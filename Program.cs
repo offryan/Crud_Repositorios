@@ -1,5 +1,7 @@
+using System.Configuration;
 using Crud_MVC.Data;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace Crud_MVC
 {
@@ -12,11 +14,11 @@ namespace Crud_MVC
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            var app = builder.Build();
-
             builder.Services.AddDbContext<Banco>
-            (options => options.UseSqlServer(
-            "Server = myServerAddress; Database = myDataBase; Trusted_Connection = True; "));
+            (options => options.UseSqlServer("Server=(local)\\sqlexpress;DataBase=CRUD_Repositorios;Trusted_Connection=True;MultipleActiveResultSets=True"));
+            // "Server = myServerAddress; Database = myDataBase; Trusted_Connection = True; "));
+
+            var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
